@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32602.215
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelCancunAPI", "HotelCancunAPI.csproj", "{D29EBA90-4104-4089-8074-8CEEFD46241F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D29EBA90-4104-4089-8074-8CEEFD46241F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D29EBA90-4104-4089-8074-8CEEFD46241F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D29EBA90-4104-4089-8074-8CEEFD46241F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D29EBA90-4104-4089-8074-8CEEFD46241F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4216F010-8FAA-457D-B1F8-5C322BA0C883}
+	EndGlobalSection
+EndGlobal
