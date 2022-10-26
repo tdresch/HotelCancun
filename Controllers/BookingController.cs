@@ -1,12 +1,9 @@
 ﻿using AutoMapper;
-using HotelCancun.Models.Entities;
-using HotelCancunAPI.Data;
+using HotelCancun.Service;
 using HotelCancunAPI.Models.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace HotelCancun.Controllers
@@ -16,13 +13,12 @@ namespace HotelCancun.Controllers
     public class BookingController : ControllerBase
     {
 
-        private static List<Booking> bookings = new List<Booking>();
         private readonly IMapper _autoMapper;
-        private readonly BookingContext _bookingContext;
+        private readonly IBookingService _bookingService;
 
-        public BookingController(BookingContext bookingContext, IMapper autoMapper)
+        public BookingController(IBookingService bookingContext, IMapper autoMapper)
         {
-            _bookingContext = bookingContext;
+            _bookingService = bookingContext;
             _autoMapper = autoMapper;
         }
 
@@ -32,25 +28,27 @@ namespace HotelCancun.Controllers
         [SwaggerResponse(404, "Returns an 404 error", typeof(ErrorResponse))]
         public async Task<IActionResult> AddBooking([FromBody] CreateBookingDto bookingDto)
         {
-            Booking booking = _autoMapper.Map<Booking>(bookingDto);
-            _bookingContext.Bookings.Add(booking);
-            _bookingContext.SaveChanges();
-            return CreatedAtAction(nameof(GetBookingById), new { Id = booking.Id }, booking);
+            if (ModelState.IsValid)
+            {
+                var bookingId = await _bookingService.InsertBooking(bookingDto);
+                return CreatedAtAction(nameof(GetBookingById), new { Id = bookingId }, bookingDto);
+            }
+            return BadRequest();
         }
 
         [HttpGet]
         [SwaggerOperation(
-            Summary ="Get all bookings",
-            Tags = new[] {"Get and Search"},
-            Description ="Get all confirmed bookings",
-            OperationId ="get"
+            Summary = "Get all bookings",
+            Tags = new[] { "Get and Search" },
+            Description = "Get all confirmed bookings",
+            OperationId = "get"
             )]
-        [SwaggerResponse(200,"Returns search result containing a list of bookings",typeof(ReadBookingDto))]
+        [SwaggerResponse(200, "Returns search result containing a list of bookings", typeof(ReadBookingDto))]
         [SwaggerResponse(400, "Returns an 400 error", typeof(ErrorResponse))]
         [SwaggerResponse(404, "Returns an 404 error", typeof(ErrorResponse))]
         public async Task<IEnumerable<ReadBookingDto>> GetAllBookings()
         {
-            return bookings.Select(s => _autoMapper.Map<ReadBookingDto>(s)).ToList(); ;
+            return await _bookingService.SearchBooking(new FilterBookingDto());
         }
 
         [HttpGet("{id}")]
@@ -65,10 +63,9 @@ namespace HotelCancun.Controllers
         [SwaggerResponse(404, "Returns an 404 error", typeof(ErrorResponse))]
         public async Task<IActionResult> GetBookingById(int id)
         {
-            Booking booking = bookings.FirstOrDefault(bk => bk.Id == id);
-            if (booking != null)
+            ReadBookingDto bookingDto = await _bookingService.GetBooking(id);
+            if (bookingDto != null)
             {
-                ReadBookingDto bookingDto = _autoMapper.Map<ReadBookingDto>(booking);
                 return Ok(bookingDto);
             }
             return NotFound();
@@ -86,14 +83,12 @@ namespace HotelCancun.Controllers
         [SwaggerResponse(404, "Returns an 404 error", typeof(ErrorResponse))]
         public async Task<IActionResult> ChangeBooking(int id, [FromBody] ChangeBookingDto bookingDto)
         {
-
-            Booking booking = bookings.FirstOrDefault(bk => bk.Id == id);
-            if (booking != null)
+            if (ModelState.IsValid)
             {
-                _autoMapper.Map(bookingDto, booking);
+                await _bookingService.UpdateBooking(id, bookingDto);
                 return NoContent();
             }
-            return NotFound();
+            return BadRequest();
         }
 
 
@@ -109,13 +104,8 @@ namespace HotelCancun.Controllers
         [SwaggerResponse(404, "Returns an 404 error", typeof(ErrorResponse))]
         public async Task<IActionResult> CancelBooking(int id)
         {
-            Booking booking = bookings.FirstOrDefault(bk => bk.Id == id);
-            if (booking != null)
-            {
-                bookings.Remove(booking);
-                return NoContent();
-            }
-            return NotFound();
+            await _bookingService.DeleteBooking(id);
+            return NoContent();
         }
     }
 
