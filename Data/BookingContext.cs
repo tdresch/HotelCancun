@@ -1,4 +1,4 @@
-﻿using HotelCancun.Models;
+﻿using HotelCancun.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace HotelCancunAPI.Data
@@ -8,7 +8,7 @@ namespace HotelCancunAPI.Data
 
         public BookingContext(DbContextOptions<BookingContext> opt) : base(opt)
         {
-
+            this.Database.EnsureCreated();
         }
 
         public DbSet<Booking> Bookings { get; set; }

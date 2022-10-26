@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using HotelCancun.Models;
+using HotelCancun.Models.Entities;
 using HotelCancunAPI.Data;
-using HotelCancunAPI.Dtos;
+using HotelCancunAPI.Models.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using System;
@@ -27,13 +27,14 @@ namespace HotelCancun.Controllers
         }
 
         [HttpPost]
-        [SwaggerResponse(200, "Insert a new booking", typeof(CreateBookingDto))]
+        [SwaggerResponse(201, "Insert a new booking", typeof(CreateBookingDto))]
         [SwaggerResponse(400, "Returns an 400 error", typeof(ErrorResponse))]
         [SwaggerResponse(404, "Returns an 404 error", typeof(ErrorResponse))]
         public async Task<IActionResult> AddBooking([FromBody] CreateBookingDto bookingDto)
         {
             Booking booking = _autoMapper.Map<Booking>(bookingDto);
-            bookings.Add(booking);
+            _bookingContext.Bookings.Add(booking);
+            _bookingContext.SaveChanges();
             return CreatedAtAction(nameof(GetBookingById), new { Id = booking.Id }, booking);
         }
 

@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using HotelCancun.Models;
-using HotelCancunAPI.Dtos;
+using HotelCancun.Models.Entities;
+using HotelCancunAPI.Models.Dtos;
 
-namespace FilmesAPI.Profiles
+namespace HotelCancunAPI.Translator
 {
     public class BookingProfile : Profile
     {
@@ -10,7 +10,7 @@ namespace FilmesAPI.Profiles
         public BookingProfile()
         {
             CreateMap<CreateBookingDto, Booking>();
-            CreateMap<Booking,ReadBookingDto>();
+            CreateMap<Booking, ReadBookingDto>();
             CreateMap<ChangeBookingDto, Booking>();
         }
     }
