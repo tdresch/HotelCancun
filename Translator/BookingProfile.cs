@@ -9,9 +9,9 @@ namespace HotelCancunAPI.Translator
 
         public BookingProfile()
         {
-            CreateMap<CreateBookingDto, Booking>();
+            CreateMap<BookingDto, Booking>();
             CreateMap<Booking, ReadBookingDto>();
-            CreateMap<ChangeBookingDto, Booking>();
+            CreateMap<BookingDto, Booking>();
         }
     }
 }

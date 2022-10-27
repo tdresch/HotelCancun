@@ -26,15 +26,12 @@
     <PackageReference Include="MySql.EntityFrameworkCore" Version="5.0.17" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.4.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="7.0.5" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\HotelCancun.Models\HotelCancun.Models.csproj" />
     <ProjectReference Include="..\HotelCancun.Service\HotelCancun.Service.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Models\" />
   </ItemGroup>
 
 </Project>

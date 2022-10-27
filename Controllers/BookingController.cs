@@ -1,8 +1,11 @@
 ﻿using AutoMapper;
+using HotelCancun.API.ActionFilters;
 using HotelCancun.Service;
 using HotelCancunAPI.Models.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
+using Swashbuckle.AspNetCore.Filters;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -23,32 +26,43 @@ namespace HotelCancun.Controllers
         }
 
         [HttpPost]
-        [SwaggerResponse(201, "Insert a new booking", typeof(CreateBookingDto))]
+        [SwaggerOperation(
+            Summary = "Insert a new booking",
+            Tags = new[] { "Insert" },
+            Description = "Insert a new booking",
+            OperationId = "insert"
+            )]
+        [SwaggerResponse(201, "Insert a new booking", typeof(BookingDto))]
+        [SwaggerRequestExample(typeof(BookingDto), typeof(CreateBookingDtoSample))]
         [SwaggerResponse(400, "Returns an 400 error", typeof(ErrorResponse))]
         [SwaggerResponse(404, "Returns an 404 error", typeof(ErrorResponse))]
-        public async Task<IActionResult> AddBooking([FromBody] CreateBookingDto bookingDto)
+        [ValidateCheckinCheckout]
+        public async Task<IActionResult> AddBooking([FromBody] BookingDto bookingDto)
         {
             if (ModelState.IsValid)
             {
                 var bookingId = await _bookingService.InsertBooking(bookingDto);
-                return CreatedAtAction(nameof(GetBookingById), new { Id = bookingId }, bookingDto);
+                return CreatedAtAction(nameof(FindBookingById), new { Id = bookingId }, bookingDto);
             }
             return BadRequest();
         }
 
-        [HttpGet]
+        [HttpPost("search")]
         [SwaggerOperation(
-            Summary = "Get all bookings",
+            Summary = "Search using parameters and returns a list of bookings",
             Tags = new[] { "Get and Search" },
-            Description = "Get all confirmed bookings",
-            OperationId = "get"
+            Description = "Search using parameters and returns a list of bookings",
+            OperationId = "search"
             )]
         [SwaggerResponse(200, "Returns search result containing a list of bookings", typeof(ReadBookingDto))]
+        [SwaggerRequestExample(typeof(FilterBookingDto), typeof(FilterBookingDtoSample))]
         [SwaggerResponse(400, "Returns an 400 error", typeof(ErrorResponse))]
         [SwaggerResponse(404, "Returns an 404 error", typeof(ErrorResponse))]
-        public async Task<IEnumerable<ReadBookingDto>> GetAllBookings()
+        [ValidateSearchBody]
+        public async Task<IActionResult> FindBookings([FromBody] FilterBookingDto filterDto)
         {
-            return await _bookingService.SearchBooking(new FilterBookingDto());
+            var result = await _bookingService.SearchBooking(filterDto);
+            return Ok(result);
         }
 
         [HttpGet("{id}")]
@@ -61,7 +75,7 @@ namespace HotelCancun.Controllers
         [SwaggerResponse(200, "Returns a booking", typeof(ReadBookingDto))]
         [SwaggerResponse(400, "Returns an 400 error", typeof(ErrorResponse))]
         [SwaggerResponse(404, "Returns an 404 error", typeof(ErrorResponse))]
-        public async Task<IActionResult> GetBookingById(int id)
+        public async Task<IActionResult> FindBookingById(int id)
         {
             ReadBookingDto bookingDto = await _bookingService.GetBooking(id);
             if (bookingDto != null)
@@ -78,17 +92,15 @@ namespace HotelCancun.Controllers
             Description = "Update an existing booking",
             OperationId = "update"
             )]
-        [SwaggerResponse(204, "Update an existing booking", typeof(ChangeBookingDto))]
+        [SwaggerResponse(204, "Update an existing booking", typeof(BookingDto))]
+        [SwaggerRequestExample(typeof(BookingDto), typeof(ChangeBookingDtoSample))]
         [SwaggerResponse(400, "Returns an 400 error", typeof(ErrorResponse))]
         [SwaggerResponse(404, "Returns an 404 error", typeof(ErrorResponse))]
-        public async Task<IActionResult> ChangeBooking(int id, [FromBody] ChangeBookingDto bookingDto)
+        [ValidateCheckinCheckout]
+        public async Task<IActionResult> ChangeBooking(int id, [FromBody] BookingDto bookingDto)
         {
-            if (ModelState.IsValid)
-            {
-                await _bookingService.UpdateBooking(id, bookingDto);
-                return NoContent();
-            }
-            return BadRequest();
+            await _bookingService.UpdateBooking(id, bookingDto);
+            return NoContent();
         }
 
 
@@ -99,7 +111,7 @@ namespace HotelCancun.Controllers
             Description = "Delete an existing booking",
             OperationId = "delete"
             )]
-        [SwaggerResponse(204, "Delete an existing booking", typeof(ChangeBookingDto))]
+        [SwaggerResponse(204, "Delete an existing booking", typeof(BookingDto))]
         [SwaggerResponse(400, "Returns an 400 error", typeof(ErrorResponse))]
         [SwaggerResponse(404, "Returns an 404 error", typeof(ErrorResponse))]
         public async Task<IActionResult> CancelBooking(int id)
