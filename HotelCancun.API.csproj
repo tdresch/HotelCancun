@@ -7,13 +7,33 @@
 
   <ItemGroup>
     <Compile Remove="Data\**" />
+    <Compile Remove="HotelCancun.DataStore.MySQL\**" />
+    <Compile Remove="HotelCancun.Models\**" />
+    <Compile Remove="HotelCancun.Service\**" />
     <Compile Remove="Migrations\**" />
     <Content Remove="Data\**" />
+    <Content Remove="HotelCancun.DataStore.MySQL\**" />
+    <Content Remove="HotelCancun.Models\**" />
+    <Content Remove="HotelCancun.Service\**" />
     <Content Remove="Migrations\**" />
     <EmbeddedResource Remove="Data\**" />
+    <EmbeddedResource Remove="HotelCancun.DataStore.MySQL\**" />
+    <EmbeddedResource Remove="HotelCancun.Models\**" />
+    <EmbeddedResource Remove="HotelCancun.Service\**" />
     <EmbeddedResource Remove="Migrations\**" />
     <None Remove="Data\**" />
+    <None Remove="HotelCancun.DataStore.MySQL\**" />
+    <None Remove="HotelCancun.Models\**" />
+    <None Remove="HotelCancun.Service\**" />
     <None Remove="Migrations\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="HotelCancun.postman_collection.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="HotelCancun.sln" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,8 +50,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HotelCancun.Models\HotelCancun.Models.csproj" />
-    <ProjectReference Include="..\HotelCancun.Service\HotelCancun.Service.csproj" />
+    <ProjectReference Include="HotelCancun.DataStore.MySQL\HotelCancun.DataStore.MySQL.csproj" />
+    <ProjectReference Include="HotelCancun.Models\HotelCancun.Models.csproj" />
+    <ProjectReference Include="HotelCancun.Service\HotelCancun.Service.csproj" />
   </ItemGroup>
 
 </Project>

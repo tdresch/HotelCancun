@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using HotelCancun.Models.Entities;
-using HotelCancunAPI.Models.Dtos;
+using HotelCancun.Models.Dtos;
 
 namespace HotelCancunAPI.Translator
 {

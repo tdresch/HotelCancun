@@ -1,6 +1,7 @@
+
+using HotelCancun.DataStore.MySQL;
+using HotelCancun.Models.Dtos;
 using HotelCancun.Service;
-using HotelCancunAPI.HotelCancun.DataStore.MySQL;
-using HotelCancunAPI.Models.Dtos;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;

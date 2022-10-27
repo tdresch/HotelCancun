@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HotelCancun.DataStore.MySQL\HotelCancun.DataStore.MySQL.csproj" />
+    <ProjectReference Include="..\HotelCancun.Models\HotelCancun.Models.csproj" />
+  </ItemGroup>
+
+</Project>

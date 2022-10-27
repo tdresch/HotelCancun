@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using HotelCancun.API.ActionFilters;
 using HotelCancun.Service;
-using HotelCancunAPI.Models.Dtos;
+using HotelCancun.Models.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using Swashbuckle.AspNetCore.Filters;

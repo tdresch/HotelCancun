@@ -1,4 +1,4 @@
-﻿using HotelCancunAPI.Models.Dtos;
+﻿using HotelCancun.Models.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System;

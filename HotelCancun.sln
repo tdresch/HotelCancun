@@ -5,16 +5,16 @@ VisualStudioVersion = 17.2.32602.215
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotelCancun.API", "HotelCancun.API.csproj", "{D29EBA90-4104-4089-8074-8CEEFD46241F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelCancun.Models", "..\HotelCancun.Models\HotelCancun.Models.csproj", "{6E970CFC-7CCD-4A71-AD07-27DE75C68749}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelCancun.Service", "..\HotelCancun.Service\HotelCancun.Service.csproj", "{67B48FEE-50D2-40C4-8A36-05429978CF2B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelCancun.DataStore.MySQL", "..\HotelCancun.DataStore.MySQL\HotelCancun.DataStore.MySQL.csproj", "{5AE456B5-C00F-4560-A189-0901B2206C5A}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{48C1EA44-8EE6-4956-8BC6-8E17F8FF9D6C}"
 	ProjectSection(SolutionItems) = preProject
-		..\..\..\OneDrive - Stefanini\Desktop\HotelCancun.postman_collection.json = ..\..\..\OneDrive - Stefanini\Desktop\HotelCancun.postman_collection.json
+		HotelCancun.postman_collection.json = HotelCancun.postman_collection.json
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotelCancun.Models", "HotelCancun.Models\HotelCancun.Models.csproj", "{96482CEF-2B23-461D-8050-FC750DE8357C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotelCancun.DataStore.MySQL", "HotelCancun.DataStore.MySQL\HotelCancun.DataStore.MySQL.csproj", "{8317710F-445D-4049-A3A6-C55A3F32166C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotelCancun.Service", "HotelCancun.Service\HotelCancun.Service.csproj", "{876B30DB-47DE-4A10-99E4-8D4873664CE2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,18 +26,18 @@ Global
 		{D29EBA90-4104-4089-8074-8CEEFD46241F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D29EBA90-4104-4089-8074-8CEEFD46241F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D29EBA90-4104-4089-8074-8CEEFD46241F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6E970CFC-7CCD-4A71-AD07-27DE75C68749}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6E970CFC-7CCD-4A71-AD07-27DE75C68749}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6E970CFC-7CCD-4A71-AD07-27DE75C68749}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6E970CFC-7CCD-4A71-AD07-27DE75C68749}.Release|Any CPU.Build.0 = Release|Any CPU
-		{67B48FEE-50D2-40C4-8A36-05429978CF2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{67B48FEE-50D2-40C4-8A36-05429978CF2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{67B48FEE-50D2-40C4-8A36-05429978CF2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{67B48FEE-50D2-40C4-8A36-05429978CF2B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5AE456B5-C00F-4560-A189-0901B2206C5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5AE456B5-C00F-4560-A189-0901B2206C5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5AE456B5-C00F-4560-A189-0901B2206C5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5AE456B5-C00F-4560-A189-0901B2206C5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96482CEF-2B23-461D-8050-FC750DE8357C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96482CEF-2B23-461D-8050-FC750DE8357C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96482CEF-2B23-461D-8050-FC750DE8357C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96482CEF-2B23-461D-8050-FC750DE8357C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8317710F-445D-4049-A3A6-C55A3F32166C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8317710F-445D-4049-A3A6-C55A3F32166C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8317710F-445D-4049-A3A6-C55A3F32166C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8317710F-445D-4049-A3A6-C55A3F32166C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{876B30DB-47DE-4A10-99E4-8D4873664CE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{876B30DB-47DE-4A10-99E4-8D4873664CE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{876B30DB-47DE-4A10-99E4-8D4873664CE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{876B30DB-47DE-4A10-99E4-8D4873664CE2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
